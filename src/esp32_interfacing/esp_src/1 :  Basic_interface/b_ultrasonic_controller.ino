@@ -36,8 +36,8 @@ void loop()
   digitalWrite(trig_Pin, LOW);
   duration = pulseIn(echo_Pin, HIGH);
   dist_in_cm = duration * SPEED_OF_SOUND/2;
-
-  ultrasonic_values_node.publish( &ultrasonic_values_msg );
+  ultrasonic_values_msg.data=dist_in_cm;
+  ultrasonic_values_node.publish(&ultrasonic_values_msg);
   nh.spinOnce();
   delay(100);
 }
